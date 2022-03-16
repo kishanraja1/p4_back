@@ -18,6 +18,7 @@ from django.urls import path
 from django.conf.urls import include
 
 urlpatterns = [
+    path('', include('artists_api.urls')),
     path('', include('albums_api.urls')),
     path('admin/', admin.site.urls),
 ]
