@@ -37,6 +37,7 @@ ALLOWED_HOSTS = ['localhost', 'young-savannah-30515.herokuapp.com']
 INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
+    'artists_api',
     'albums_api',
     'django.contrib.admin',
     'django.contrib.auth',
