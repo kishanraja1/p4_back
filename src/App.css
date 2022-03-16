@@ -1,0 +1,80 @@
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: midnightblue;
+  color: whitesmoke;
+  min-height: 100vh;
+  min-width: 95vw;
+}
+
+h1 {
+  margin: 1em auto;
+  text-align: center;
+}
+
+.add-new-album {
+  margin: 1em;
+}
+
+.album-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: space-between;
+  gap: 1em;
+  box-shadow: 5px 5px 50px black;
+  padding: 2em;
+  width: 80vw;
+  margin: 0 auto 2em;
+}
+
+.card {
+  width: 250px;
+  padding: 0.25em;
+  border: 1px solid black;
+  text-align: center;
+}
+
+details {
+  text-align: center;
+}
+
+button {
+  padding: 0.25em 1em;
+  display: block;
+  margin: 0 auto;
+}
+
+footer h3 {
+  text-align: center;
+}
+
+.engineers-footer-box {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+}
+
+.engineer {
+  max-width: 30%;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.engineer-links-list {
+  list-style-type: none;
+}
+
+.engineer-link {
+  display: inline;
+  padding-right: 0.5em;
+}
