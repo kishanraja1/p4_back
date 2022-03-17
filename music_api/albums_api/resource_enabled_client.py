@@ -78,14 +78,17 @@ class SpotifyAPI(object):
       self.perform_auth()
       return self.get_access_token()
     return token
-
-  def search(self, query, search_type='artist'): # type is built-in python operator
-    # spotify.search
+  
+  def get_resource_header(self):
     access_token = self.get_access_token()
     headers = {
       "Authorization": f"Bearer {access_token}"
     }
+    return headers
 
+  def search(self, query, search_type='artist'): # type is built-in python operator
+    # spotify.search
+    headers = self.get_resource_header()
     endpoint = 'https://api.spotify.com/v1/search'
     # data = urlencode({"q": "Time", "type": "track",})
     # print(data)
@@ -103,12 +106,25 @@ class SpotifyAPI(object):
       return {}
     return r.json()
 
-  def get_album(self, ):
-    pass
+  def get_resource(self, lookup_id, resource_type='albums', version='v1'):
+    endpoint = f"https://api.spotify.com/{version}/{resource_type}/{lookup_id}"
+    headers = self.get_resource_header()
+    r = requests.get(endpoint, headers=headers)
+    if r.status_code not in range(200, 299):
+      return {}
+    return r.json()
 
-  def get_artist(self, ):
-    pass
+  def get_album(self, _id ):
+    return self.get_resource(_id, resource_type='albums')
+
+  def get_artist(self, _id):
+    return self.get_resource(_id, resource_type='artists')
     
 spotify = SpotifyAPI(client_id, client_secret) # set a SpotifyAPI class Object
 
-spotify.search('Come Together', 'track')
+# print(spotify.search('Come Together', 'track'))
+api_response_for_beatles = spotify.get_artist('3WrFJ7ztbogyGnTHbHJFl2')
+print(api_response_for_beatles['genres'])
+
+coldplay_artist_search_response = spotify.search('Coldplay','artist')
+print(coldplay_artist_search_response['artists']['items'][0]['name'])
