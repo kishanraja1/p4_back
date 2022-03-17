@@ -5,6 +5,7 @@ from lib2to3.pgen2 import token
 import requests
 import base64
 import datetime
+from urllib.parse import urlencode
 
 client_id = 'a99dfe235c814dcda823e58b44a28596'
 client_secret = '55495c730dda4c95991bca5dcd6a8247'
@@ -69,7 +70,24 @@ spotify = SpotifyAPI(client_id, client_secret) # set a SpotifyAPI class Object
 
 spotify.perform_auth()
 
-spotify.access_token
+access_token = spotify.access_token
 
 # spotify.search 
+headers = {
+  "Authorization": f"Bearer {access_token}"
+}
 
+endpoint = 'https://api.spotify.com/v1/search'
+# data = urlencode({"q": "Time", "type": "track",})
+# print(data)
+# lookup_url = f"{endpoint}?{data}"
+# r = requests.get(lookup_url, headers=headers)
+# print(r.json())
+# print(r.status_code)
+
+data = urlencode({"q": "A Lannister always pays his debts", "type": "track",})
+print(data)
+lookup_url = f"{endpoint}?{data}"
+r = requests.get(lookup_url, headers=headers)
+# print(r.json())
+print(r.status_code)
