@@ -5,7 +5,7 @@ from django.db import models
 class Artist(models.Model):
     name = models.TextField()
     genre = models.TextField()
-    soloArtists = models.BooleanField()
+    # soloArtists = models.BooleanField()
     language = models.TextField()
     # albums = models.('artists_api.Album')
 
