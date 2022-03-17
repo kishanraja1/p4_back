@@ -124,7 +124,10 @@ spotify = SpotifyAPI(client_id, client_secret) # set a SpotifyAPI class Object
 
 # print(spotify.search('Come Together', 'track'))
 api_response_for_beatles = spotify.get_artist('3WrFJ7ztbogyGnTHbHJFl2')
-print(api_response_for_beatles['genres'])
+# print(api_response_for_beatles['genres'])
 
 coldplay_artist_search_response = spotify.search('Coldplay','artist')
-print(coldplay_artist_search_response['artists']['items'][0]['name'])
+# print(coldplay_artist_search_response['artists']['items'][0]['name'])
+
+album_search_response = spotify.search('Goodbye Yellow Brick Road','album')
+print(album_search_response['albums']['items'][0]['artists'][0]['name'])
