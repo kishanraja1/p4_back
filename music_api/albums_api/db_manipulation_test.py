@@ -1,5 +1,5 @@
 import psycopg2
-from spotify_client import spotify
+from spotify_client import *
 
 sp_api_call = spotify.search('South Pacific','album')
 sp_converted_data = spotify.convert_album_data(sp_api_call)

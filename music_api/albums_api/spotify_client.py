@@ -7,9 +7,10 @@ import base64
 import datetime
 from urllib.parse import urlencode
 import psycopg2
+from decouple import config
 
-client_id = 'a99dfe235c814dcda823e58b44a28596'
-client_secret = '55495c730dda4c95991bca5dcd6a8247'
+client_id = config("SPOTIFY_ID")
+client_secret = config("SPOTIFY_KEY")
 
 class SpotifyAPI(object):
   access_token = None
