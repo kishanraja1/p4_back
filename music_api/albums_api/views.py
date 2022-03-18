@@ -3,6 +3,8 @@ from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 from rest_framework import generics
 from .serializers import AlbumSerializer
 from .models import Album
+from albums_api import spotify_client
+
 
 # Create your views here.
 
@@ -15,5 +17,8 @@ class AlbumDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AlbumSerializer
 
 def spotify_get_album_info(request):
-    my_obj = {"test_field":"hello", "test_2":"just testing"}
-    return JsonResponse(my_obj)
+    album_query = spotify_client.spotify.search('Some Nights','album')
+    album_obj = spotify_client.spotify.convert_album_data(album_query)
+    print(album_obj)
+    # my_obj = {"test_field":"hello", "test_2":"just testing"}
+    return JsonResponse(album_obj)

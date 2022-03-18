@@ -5,3 +5,4 @@ from artists_api.models import Artist
 class Album(models.Model):
     name = models.TextField()
     year = models.IntegerField()
+    image = models.TextField(default='')

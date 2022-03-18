@@ -6,6 +6,7 @@ import requests
 import base64
 import datetime
 from urllib.parse import urlencode
+from decouple import config
 
 client_id = config("SPOTIFY_ID")
 client_secret = config("SPOTIFY_SECRET")

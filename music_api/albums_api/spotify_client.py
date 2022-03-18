@@ -120,7 +120,8 @@ class SpotifyAPI(object):
 
     converted_album_data = {
       "name": first_returned_album["name"],
-      "year": first_returned_album["release_date"][0:4:1]
+      "year": first_returned_album["release_date"][0:4:1],
+      "image": first_returned_album['images'][0]['url'],
     }
 
     return converted_album_data

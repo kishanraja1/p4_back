@@ -1,8 +1,8 @@
 from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseNotFound, JsonResponse
 from rest_framework import generics
 from .serializers import ArtistSerializer
 from .models import Artist
-from django.http import HttpResponse, HttpResponseNotFound
 from albums_api import spotify_client
 
 
@@ -16,6 +16,8 @@ class ArtistDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ArtistSerializer
 
 def spotify_get_artist_info(request):
-    json = {"field": "test", "example": "object"}
-    print(request)
-    return HttpResponse('<h1>Spotify get artist info requested</h1>')
+    artist_query = spotify_client.spotify.search('John Prine','artist')
+    artist_obj = spotify_client.spotify.convert_artist_data(artist_query)
+    # print(request)
+    return JsonResponse(artist_obj)
+    # return JsonResponse({"default field":"default"})
