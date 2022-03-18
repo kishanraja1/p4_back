@@ -6,6 +6,7 @@ import requests
 import base64
 import datetime
 from urllib.parse import urlencode
+import psycopg2
 
 client_id = 'a99dfe235c814dcda823e58b44a28596'
 client_secret = '55495c730dda4c95991bca5dcd6a8247'
@@ -101,7 +102,7 @@ class SpotifyAPI(object):
     lookup_url = f"{endpoint}?{data}"
     r = requests.get(lookup_url, headers=headers)
     # print(r.json())
-    print(r.status_code)
+    # print(r.status_code)
     if r.status_code not in range(200, 299):
       return {}
     return r.json()
@@ -137,22 +138,25 @@ class SpotifyAPI(object):
       "name": first_returned_artist['name'],
       "genre": ", ".join(first_returned_artist['genres']),
       "image": first_returned_artist['images'][0],
-      "language": '',
     }
 
     return converted_artist_data
     
 spotify = SpotifyAPI(client_id, client_secret) # set a SpotifyAPI class Object
 
+# test functions
 # print(spotify.search('Come Together', 'track'))
 # api_response_for_beatles = spotify.get_artist('3WrFJ7ztbogyGnTHbHJFl2')
 # print(api_response_for_beatles)
 
-coldplay_artist_search_response = spotify.search('Coldplay','artist')
-print(spotify.convert_artist_data(coldplay_artist_search_response))
+# coldplay_artist_search_response = spotify.search('Coldplay','artist')
+# print(spotify.convert_artist_data(coldplay_artist_search_response))
 
 # album_search_response = spotify.search('Goodbye Yellow Brick Road','album')
 # print(album_search_response['albums']['items'][0]['name'])
 # print(spotify.convert_album_data(album_search_response))
 
 # artist_of_GYBR = album_search_response['albums']['items'][0]['artists'][0]
+# south_pacific_album = spotify.search('South Pacific','album')
+# sp_album_ready_for_pg_insert = spotify.convert_album_data(south_pacific_album)
+# print(sp_album_ready_for_pg_insert)
