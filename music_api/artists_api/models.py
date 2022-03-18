@@ -5,9 +5,7 @@ from django.db import models
 class Artist(models.Model):
     name = models.TextField()
     genre = models.TextField()
-    soloArtists = models.BooleanField()
-    language = models.TextField()
-    # albums = models.('artists_api.Album')
+    image = models.TextField(default='')
 
     def __str__(self):
         return self.name
