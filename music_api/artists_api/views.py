@@ -18,6 +18,6 @@ class ArtistDetail(generics.RetrieveUpdateDestroyAPIView):
 def spotify_get_artist_info(request):
     artist_query = spotify_client.spotify.search('John Prine','artist')
     artist_obj = spotify_client.spotify.convert_artist_data(artist_query)
-    # print(request)
+    # print(request.POST)
     return JsonResponse(artist_obj)
     # return JsonResponse({"default field":"default"})
