@@ -10,7 +10,7 @@ import psycopg2
 from decouple import config
 
 client_id = config("SPOTIFY_ID")
-client_secret = config("SPOTIFY_KEY")
+client_secret = config("SPOTIFY_SECRET")
 
 class SpotifyAPI(object):
   access_token = None
