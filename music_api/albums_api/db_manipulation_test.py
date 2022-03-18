@@ -3,17 +3,17 @@
 import psycopg2
 from spotify_client import *
 
-sp_api_call = spotify.search('South Pacific','album')
-sp_converted_data = spotify.convert_album_data(sp_api_call)
+haiti_api_call = spotify.search('Hope for Haiti','album')
+haiti_converted_data = spotify.convert_album_data(haiti_api_call)
 # print(sp_converted_data)
 
 # ladygaga_api_call = spotify.search('Lady Gaga','artist')
 # lg_converted_data = spotify.convert_artist_data(ladygaga_api_call)
-bruce_api_call = spotify.search('Bruce Springsteen','artist')
-bruce_converted_data = spotify.convert_artist_data(bruce_api_call)
-print(bruce_converted_data)
+# bruce_api_call = spotify.search('Bruce Springsteen','artist')
+# bruce_converted_data = spotify.convert_artist_data(bruce_api_call)
+# print(bruce_converted_data)
 
-def insert_album(name, year):
+def insert_album(album_obj):
   conn = None
   album_id = None
   try: 
@@ -27,7 +27,7 @@ def insert_album(name, year):
 
     # execute the INSERT statement
     sql = '''INSERT INTO albums_api_album(name, year) VALUES(%s, %s) RETURNING id'''
-    cur.execute(sql, (name, year,))
+    cur.execute(sql, (album_obj['name'], album_obj['year'],))
 
     # get the generated id back
     album_id = cur.fetchone()[0]
@@ -77,9 +77,9 @@ def insert_artist(artist_obj):
 
   return artist_id
 
-# print(insert_album(sp_converted_data['name'], sp_converted_data['year']))
-print(insert_artist(bruce_converted_data))
-
+# print(insert_album(sp_converted_data))
+# print(insert_artist(bruce_converted_data))
+# print(insert_album(haiti_converted_data))
 
 
 
