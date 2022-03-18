@@ -1,3 +1,5 @@
+# used www.postgresqltutorial.com to help with much of this code
+
 import psycopg2
 from spotify_client import *
 
