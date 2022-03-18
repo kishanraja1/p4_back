@@ -92,13 +92,6 @@ class SpotifyAPI(object):
     # spotify.search
     headers = self.get_resource_header()
     endpoint = 'https://api.spotify.com/v1/search'
-    # data = urlencode({"q": "Time", "type": "track",})
-    # print(data)
-    # lookup_url = f"{endpoint}?{data}"
-    # r = requests.get(lookup_url, headers=headers)
-    # print(r.json())
-    # print(r.status_code)
-
     data = urlencode({"q": query, "type": search_type.lower(),})
     lookup_url = f"{endpoint}?{data}"
     r = requests.get(lookup_url, headers=headers)
@@ -145,7 +138,7 @@ class SpotifyAPI(object):
     
 spotify = SpotifyAPI(client_id, client_secret) # set a SpotifyAPI class Object
 
-# test functions
+### test functions
 # print(spotify.search('Come Together', 'track'))
 # api_response_for_beatles = spotify.get_artist('3WrFJ7ztbogyGnTHbHJFl2')
 # print(api_response_for_beatles)
