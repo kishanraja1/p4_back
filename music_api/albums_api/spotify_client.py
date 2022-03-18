@@ -131,7 +131,7 @@ class SpotifyAPI(object):
     converted_artist_data = {
       "name": first_returned_artist['name'],
       "genre": ", ".join(first_returned_artist['genres']),
-      "image": first_returned_artist['images'][0],
+      "image": first_returned_artist['images'][0]['url'],
     }
 
     return converted_artist_data

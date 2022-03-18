@@ -7,9 +7,11 @@ sp_api_call = spotify.search('South Pacific','album')
 sp_converted_data = spotify.convert_album_data(sp_api_call)
 # print(sp_converted_data)
 
-ladygaga_api_call = spotify.search('Lady Gaga','artist')
-lg_converted_data = spotify.convert_artist_data(ladygaga_api_call)
-print(lg_converted_data)
+# ladygaga_api_call = spotify.search('Lady Gaga','artist')
+# lg_converted_data = spotify.convert_artist_data(ladygaga_api_call)
+bruce_api_call = spotify.search('Bruce Springsteen','artist')
+bruce_converted_data = spotify.convert_artist_data(bruce_api_call)
+print(bruce_converted_data)
 
 def insert_album(name, year):
   conn = None
@@ -43,7 +45,7 @@ def insert_album(name, year):
 
   return album_id
 
-def insert_artist(name, genre, image):
+def insert_artist(artist_obj):
   conn = None
   artist_id = None
   try: 
@@ -56,8 +58,8 @@ def insert_artist(name, genre, image):
     cur = conn.cursor()
 
     # execute the INSERT statement
-    sql = '''INSERT INTO artists_api_artist(name, year) VALUES(%s, %s, %s) RETURNING id'''
-    cur.execute(sql, (name, genre, image,))
+    sql = '''INSERT INTO artists_api_artist(name, genre, image) VALUES(%s, %s, %s) RETURNING id'''
+    cur.execute(sql, (artist_obj['name'], artist_obj['genre'], artist_obj['image'],))
 
     # get the generated id back
     artist_id = cur.fetchone()[0]
@@ -76,6 +78,7 @@ def insert_artist(name, genre, image):
   return artist_id
 
 # print(insert_album(sp_converted_data['name'], sp_converted_data['year']))
+print(insert_artist(bruce_converted_data))
 
 
 

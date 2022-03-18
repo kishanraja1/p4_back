@@ -5,6 +5,7 @@ from lib2to3.pgen2 import token
 import requests
 import base64
 import datetime
+from decouple import config
 
 client_id = config("SPOTIFY_ID")
 client_secret = config("SPOTIFY_SECRET")
