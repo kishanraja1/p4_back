@@ -9,3 +9,7 @@ class Artist(models.Model):
 
     def __str__(self):
         return self.name
+
+class QueryArtist(models.Model):
+    search_query = models.TextField(default="No artist entered")
+
